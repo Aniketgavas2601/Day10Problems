@@ -5,9 +5,12 @@ public class EmployeeWage {
     public static final int PART_TIME = 2;
     public static final int EMP_PER_HOUR_RATE = 50;
     public static final int NUMBER_OF_WORKING_DAYS = 20;
+    public static final int MAX_HRS_IN_MONTH = 20;
     int empHrs = 0;
     int empWage = 0;
     int totalEmpWage = 0;
+    int totalEmpHrs = 0;
+    int totalWorkingDays = 0;
 
 
     //Check Employee IS present Or Absent
@@ -21,9 +24,8 @@ public class EmployeeWage {
         }
     }
 
-
-
     //Calculate Daily EmployeeWage
+
     public void empDailyWage() {
         double empCheck = Math.floor(Math.random() * 10) % 2;
 
@@ -35,8 +37,6 @@ public class EmployeeWage {
         empWage = empHrs * EMP_PER_HOUR_RATE;
         System.out.println("Employee Wage:"+empWage);
     }
-
-
 
     //Add Part Time And EmployeeWage
 
@@ -91,6 +91,29 @@ public class EmployeeWage {
         System.out.println("Total Employee Wage: "+totalEmpWage);
     }
 
+    //Calculating Wages till Number of Working Days or Total Working Hours per month is Reached
+
+    public void wagesTillTotalWorkingHoursPerMonth(){
+        while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUMBER_OF_WORKING_DAYS){
+            totalWorkingDays++;
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+            switch (empCheck){
+                case FULL_TIME:
+                    empHrs = 8;
+                    break;
+                case PART_TIME:
+                    empHrs = 4;
+                    break;
+                default:
+                    empHrs = 0;
+            }
+            totalEmpHrs += empHrs;
+            System.out.println("Day: "+totalWorkingDays+ "Employee Hour: "+empHrs);
+        }
+        int totalEmpWage = totalEmpHrs * EMP_PER_HOUR_RATE;
+        System.out.println("Total Employee wage: "+totalEmpWage);
+    }
+
     public static void main(String[] args) {
         EmployeeWage emp = new EmployeeWage();
         emp.empCheckPresentOrAbsent();
@@ -98,5 +121,6 @@ public class EmployeeWage {
         emp.addPartTimeAndEmpWage();
         emp.switchStatement();
         emp.empMonthlyWage();
+        emp.wagesTillTotalWorkingHoursPerMonth();
     }
 }
