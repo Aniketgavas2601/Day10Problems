@@ -3,18 +3,15 @@ package com.bridelabz.employeewage;
 public class EmployeeWage {
     public static final int FULL_TIME = 1;
     public static final int PART_TIME = 2;
-    public static final int EMP_PER_HOUR_RATE = 50;
-    public static final int NUMBER_OF_WORKING_DAYS = 20;
-    public static final int MAX_HRS_IN_MONTH = 20;
 
 
     //Refactor the code
-    public static int computeEmpWage() {
+    public static int computeEmpWage(String company, int empPerHourRate, int numOfWorkingDays, int maxHourInMonth) {
         int empHrs = 0;
         int totalEmpHrs = 0;
         int totalWorkingDays = 0;
 
-        while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUMBER_OF_WORKING_DAYS){
+        while (totalEmpHrs <= maxHourInMonth && totalWorkingDays < numOfWorkingDays){
             totalWorkingDays++;
             int empCheck = (int) Math.floor(Math.random() * 10) % 3;
             switch (empCheck){
@@ -30,13 +27,17 @@ public class EmployeeWage {
             totalEmpHrs += empHrs;
             System.out.println("Day: "+totalWorkingDays+ "Employee Hour: "+empHrs);
         }
-        int totalEmpWage = totalEmpHrs * EMP_PER_HOUR_RATE;
-        System.out.println("Total Employee wage: "+totalEmpWage);
+        int totalEmpWage = totalEmpHrs * empPerHourRate;
+        System.out.println("Total Employee wage for Company: "+company+ "is: "+totalEmpWage);
         return totalEmpWage;
     }
 
+    //Employee Wage For Multiple Companies
 
     public static void main(String[] args) {
-        computeEmpWage();
+        computeEmpWage("Jio",30,22,12);
+        computeEmpWage("Accenture",50,20,9);
+        computeEmpWage("NSEIT",60,24,10);
+        computeEmpWage("Infosys",45,26,11);
     }
 }
