@@ -4,8 +4,10 @@ public class EmployeeWage {
     public static final int FULL_TIME = 1;
     public static final int PART_TIME = 2;
     public static final int EMP_PER_HOUR_RATE = 50;
+    public static final int NUMBER_OF_WORKING_DAYS = 20;
     int empHrs = 0;
     int empWage = 0;
+    int totalEmpWage = 0;
 
 
     //Check Employee IS present Or Absent
@@ -67,11 +69,34 @@ public class EmployeeWage {
         System.out.println("Employee Wage: "+empWage);
     }
 
+    //Calculate Employee Monthly Wage
+
+    public void empMonthlyWage(){
+        for(int day=0; day < NUMBER_OF_WORKING_DAYS; day++){
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+            switch (empCheck){
+                case FULL_TIME:
+                    empHrs = 8;
+                    break;
+                case PART_TIME:
+                    empHrs = 4;
+                    break;
+                default:
+                    empHrs = 0;
+            }
+            empWage = empHrs * EMP_PER_HOUR_RATE;
+            totalEmpWage += empWage;
+            System.out.println("Employee Wage: "+empWage);
+        }
+        System.out.println("Total Employee Wage: "+totalEmpWage);
+    }
+
     public static void main(String[] args) {
         EmployeeWage emp = new EmployeeWage();
         emp.empCheckPresentOrAbsent();
         emp.empDailyWage();
         emp.addPartTimeAndEmpWage();
         emp.switchStatement();
+        emp.empMonthlyWage();
     }
 }
