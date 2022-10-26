@@ -1,3 +1,4 @@
+//Multiple Companies Using Interface Approach
 package com.bridelabz.employeewage;
 
 public class EmployeeWage {
