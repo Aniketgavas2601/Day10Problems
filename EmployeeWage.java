@@ -45,6 +45,7 @@ public class EmployeeWage {
         }
 
         private int computeEmpWage(EmployeeWage employeeWage){
+            //variables
             int empHrs = 0;
             int totalEmpHrs = 0;
             int totalWorkingDays = 0;
